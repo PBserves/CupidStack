@@ -1,0 +1,16 @@
+{
+  "name": "cupidstack",
+  "version": "1.0.0",
+  "description": "The only place where a Merge Conflict is a good thing.",
+  "license": "ISC",
+  "author": "Prakhar Bhagat",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
