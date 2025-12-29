@@ -1,13 +1,17 @@
 const express = require('express');
 const app = express();
 
-app.use("/user", (req, res) => {
-    res.send("User Page");
+
+app.get("/user", (req, res) => {
+    res.send("demnnnnnnnnnn!");
+})
+app.post("/user", (req, res) => {
+    res.send("demnnnnnnnnnn! Post request received.");
+})
+app.delete("/user", (req, res) => {
+    res.send("demnnnnnnnnnn! Delete request received.");
 })
 
-app.use("/", (req, res) => {
-    res.send("HALOOO!");
-})
 
 
 app.listen(3000, () => {
