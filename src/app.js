@@ -1,24 +1,34 @@
 const express = require('express');
+const connectDB = require('./config/database');
 const app = express();
-
-// best practice to have error handling middleware for each route
-app.get("/getUserData", (req, res) => {
-    //logic of db call and get user data
+const User = require('./models/user');
+app.post('/signup', async (req, res) => {
+    const user = new User(
+        {
+            firstName: "Virat",
+            lastName: "Kohli",
+            email: "vyratt@example.com",
+            password: "password123",
+            age: 38,
+            gender: "male"
+        }
+    )
     try {
-        throw new error("wrbtrtbklm");
-        res.send("User Route accessed by user");
+        await user.save();
+        res.send("User signed up successfully");
     } catch (err) {
-        res.status(500).send("Something went wrong!");
+        res.status(500).send("Error signing up user: " + err.message);
     }
 
-});
-// wildcard error handling middleware and ye last me hota hai
-app.use("/", (err, req, res, next) => {
-    if (err) {
-        //log your error 
-        res.status(500).send("Something went wrong!");
-    }
 })
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-})
+connectDB()
+    .then(() => {
+        console.log("Database connected successfully");
+        app.listen(3000, () => {
+            console.log('Server is listening on port 3000');
+        })
+    })
+    .catch((err) => {
+        console.error("Database connection failed !!");
+    });
+
